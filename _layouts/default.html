@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title | default: site.title }}</title>
+  <meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | default: site.description }}">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <script defer src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</head>
+<body>
+  <div class="site">
+    <header class="site-header">
+      <div class="brand">
+        <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+        <small>{{ site.description }}</small>
+      </div>
+      <nav>
+        <a href="{{ '/' | relative_url }}">홈</a>
+        &nbsp;·&nbsp;
+        <a href="{{ '/categories/' | relative_url }}">카테고리</a>
+        &nbsp;·&nbsp;
+        <a href="{{ site.github.repository_url | default: 'https://github.com' }}">GitHub</a>
+      </nav>
+    </header>
+
+    <aside class="left">
+      {% include sidebar-left.html %}
+    </aside>
+
+    <main>
+      {{ content }}
+    </main>
+
+    <aside class="right">
+      {% include sidebar-right.html %}
+    </aside>
+
+    <footer>
+      © {{ site.time | date: "%Y" }} · {{ site.title }} — GitHub Pages & Jekyll
+    </footer>
+  </div>
+</body>
+</html>

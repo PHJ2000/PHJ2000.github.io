@@ -1,0 +1,15 @@
+<div class="card glossary">
+  <h3 style="margin-top:0">용어 설명</h3>
+  <input id="glossary-search" class="search" placeholder="검색 (예: REST, CORS)"/>
+  <dl>
+    {%- assign pairs = site.data.glossary | sort %}
+    {%- for pair in pairs -%}
+      {%- assign term = pair[0] -%}
+      {%- assign def = pair[1] -%}
+      <div>
+        <dt id="term-{{ term | slugify }}">{{ term }}</dt>
+        <dd>{{ def }}</dd>
+      </div>
+    {%- endfor -%}
+  </dl>
+</div>

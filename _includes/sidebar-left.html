@@ -1,0 +1,14 @@
+<div class="card cats">
+  <h3>카테고리</h3>
+  <ul>
+  {%- assign sorted_cats = site.categories | sort %}
+  {%- for cat in sorted_cats -%}
+    {%- assign name = cat[0] -%}
+    {%- assign posts = cat[1] -%}
+    <li>
+      <a href="{{ '/categories/' | relative_url }}#cat-{{ name | slugify }}">{{ name }}</a>
+      <span class="badge">{{ posts | size }}</span>
+    </li>
+  {%- endfor -%}
+  </ul>
+</div>

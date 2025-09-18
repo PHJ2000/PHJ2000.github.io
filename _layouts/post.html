@@ -1,0 +1,33 @@
+---
+layout: default
+---
+<article class="prose">
+  {%- if page.title_image -%}
+    <!-- 1) 글자 자체에 이미지가 채워지는 스타일 -->
+    <h1 class="title title--lg title--clipped" style="--title-bg: url('{{ page.title_image | relative_url }}')">
+      {{ page.title }}
+    </h1>
+
+    <!-- 2) 대체 히어로 이미지 (page.title_clip: false 일 때 표시) -->
+    {%- if page.title_clip == false -%}
+      <div class="hero">
+        <img src="{{ page.title_image | relative_url }}" alt="{{ page.title }} hero">
+        <div class="hero-text">{{ page.title }}</div>
+      </div>
+    {%- endif -%}
+  {%- else -%}
+    <h1 class="title title--lg">{{ page.title }}</h1>
+  {%- endif -%}
+
+  <p class="meta">
+    {{ page.date | date: "%Y-%m-%d" }}
+    {%- if page.categories and page.categories.size > 0 -%}
+      · 분류:
+      {%- for c in page.categories -%}
+        <a href="{{ '/categories/' | relative_url }}#cat-{{ c | slugify }}">{{ c }}</a>{% unless forloop.last %}, {% endunless %}
+      {%- endfor -%}
+    {%- endif -%}
+  </p>
+
+  {{ content }}
+</article>

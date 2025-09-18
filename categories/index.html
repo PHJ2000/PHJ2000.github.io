@@ -1,0 +1,19 @@
+---
+layout: default
+title: 카테고리
+permalink: /categories/
+---
+<h1 class="title title--lg">카테고리</h1>
+{%- assign sorted_cats = site.categories | sort %}
+{%- for cat in sorted_cats -%}
+  {%- assign name = cat[0] -%}
+  {%- assign posts = cat[1] -%}
+  <section id="cat-{{ name | slugify }}" class="card" style="margin-bottom:14px">
+    <h2 style="margin-top:0">{{ name }} <span class="badge">{{ posts | size }}</span></h2>
+    <ul>
+      {%- for p in posts -%}
+        <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a> <span class="meta">— {{ p.date | date: "%Y-%m-%d" }}</span></li>
+      {%- endfor -%}
+    </ul>
+  </section>
+{%- endfor -%}

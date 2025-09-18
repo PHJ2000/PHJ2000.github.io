@@ -1,0 +1,19 @@
+title: 내 기술 블로그
+description: 개발과 기술에 대한 기록
+# 배포 시 아래 URL을 본인의 GitHub Pages URL로 바꿔주세요 (예: https://YOUR_USERNAME.github.io)
+url: https://YOUR_USERNAME.github.io
+baseurl: ""
+
+# GitHub Pages 호환 설정
+theme: null
+markdown: kramdown
+plugins: []
+
+# 기본 레이아웃
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+      permalink: "/:categories/:year/:month/:day/:title/"

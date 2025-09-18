@@ -1,0 +1,4 @@
+API: "Application Programming Interface의 약자. 소프트웨어 간 상호작용을 정의하는 규약입니다."
+REST: "Representational State Transfer. HTTP 기반의 자원 중심 아키텍처 스타일입니다."
+CORS: "Cross-Origin Resource Sharing. 다른 출처 간 리소스 접근을 제어하는 브라우저 보안 정책입니다."
+CI/CD: "지속적 통합/배포. 코드 변경이 자동으로 테스트 및 배포되도록 하는 파이프라인입니다."
