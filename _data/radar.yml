@@ -1,0 +1,12 @@
+Adopt:
+  - name: "Plausible Analytics"
+    note: "가벼운 분석 도구"
+Trial:
+  - name: "React Compiler"
+    note: "초기 도입 검토"
+Assess:
+  - name: "Edge Functions"
+    note: "유즈케이스 탐색"
+Hold:
+  - name: "Heavy CSS-in-JS"
+    note: "성능 고려 대기"

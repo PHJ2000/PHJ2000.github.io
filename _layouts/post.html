@@ -11,7 +11,7 @@ layout: default
     <!-- 2) 대체 히어로 이미지 (page.title_clip: false 일 때 표시) -->
     {%- if page.title_clip == false -%}
       <div class="hero">
-        <img src="{{ page.title_image | relative_url }}" alt="{{ page.title }} hero">
+        <img src="{{ page.title_image | relative_url }}" alt="{{ page.title }} hero" loading="lazy" decoding="async">
         <div class="hero-text">{{ page.title }}</div>
       </div>
     {%- endif -%}
@@ -19,15 +19,26 @@ layout: default
     <h1 class="title title--lg">{{ page.title }}</h1>
   {%- endif -%}
 
+  {% assign words = content | strip_html | replace: '\n',' ' | split:' ' | size %}
+  {% assign minutes = words | divided_by: 220 | ceil %}
   <p class="meta">
-    {{ page.date | date: "%Y-%m-%d" }}
+    {{ page.date | date: "%Y-%m-%d" }} · 약 {{ minutes }}분
     {%- if page.categories and page.categories.size > 0 -%}
-      · 분류:
+      ·
       {%- for c in page.categories -%}
         <a href="{{ '/categories/' | relative_url }}#cat-{{ c | slugify }}">{{ c }}</a>{% unless forloop.last %}, {% endunless %}
       {%- endfor -%}
     {%- endif -%}
   </p>
 
+  {% if page.link_url %}
+    <p class="card" style="margin:12px 0">
+      🔗 링크 포스트: <a href="{{ page.link_url }}" rel="noopener" target="_blank">{{ page.link_url }}</a>
+    </p>
+  {% endif %}
+
   {{ content }}
+  {% include series-nav.html %}
+  {% include related-posts.html %}
 </article>
+{% include giscus.html %}

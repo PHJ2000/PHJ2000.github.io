@@ -1,0 +1,25 @@
+---
+layout: default
+title: Tech Radar
+permalink: /radar/
+---
+<h1 class="title title--lg">Tech Radar</h1>
+<style>
+.radar{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.radar .q{border:1px solid var(--border);border-radius:12px;padding:12px;background:var(--card)}
+.radar h2{margin-top:0}
+@media (max-width: 768px){.radar{grid-template-columns:1fr}}
+</style>
+{% assign quads = "Adopt,Trial,Assess,Hold" | split: "," %}
+<div class="radar">
+  {% for quad in quads %}
+    <section class="q">
+      <h2>{{ quad }}</h2>
+      <ul>
+        {% for it in site.data.radar[quad] %}
+          <li><strong>{{ it.name }}</strong>{% if it.note %} — {{ it.note }}{% endif %}</li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endfor %}
+</div>

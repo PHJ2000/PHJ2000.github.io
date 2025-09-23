@@ -1,0 +1,43 @@
+---
+layout: default
+title: 트렌드
+permalink: /trends/
+---
+<h1 class="title title--lg">주간 트렌드</h1>
+<div class="card" style="margin-bottom:12px">
+  <strong>필터:</strong>
+  <span id="trend-filters"></span>
+</div>
+<div id="trend-list">
+  {% for w in site.data.trends %}
+    <section class="card" data-week="{{ w.week }}">
+      <h2 style="margin-top:0">{{ w.week }}</h2>
+      <ul>
+      {% assign labels = "" | split: "" %}
+      {% for it in w.items %}
+        {% assign labels = labels | push: it.label %}
+        <li data-label="{{ it.label }}"><strong>[{{ it.label }}]</strong>
+          <a href="{{ it.url }}" target="_blank" rel="noopener">{{ it.title }} ↗</a> — {{ it.note }}
+        </li>
+      {% endfor %}
+      </ul>
+      <script>window.__labels=(window.__labels||[]).concat({{ labels | uniq | jsonify }});</script>
+    </section>
+  {% endfor %}
+</div>
+<script>
+  const box=document.getElementById('trend-filters');
+  const uniq=[...new Set(window.__labels||[])];
+  uniq.forEach(l=>{
+    const b=document.createElement('button'); b.textContent=l;
+    b.onclick=()=>{
+      document.querySelectorAll('#trend-list li').forEach(li=>{
+        li.style.display=(l===li.dataset.label)?'':'none';
+      });
+    };
+    box.appendChild(b);
+  });
+  const all=document.createElement('button'); all.textContent='All';
+  all.onclick=()=>document.querySelectorAll('#trend-list li').forEach(li=>li.style.display='');
+  box.prepend(all);
+</script>
