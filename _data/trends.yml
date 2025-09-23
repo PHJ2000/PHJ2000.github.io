@@ -1,0 +1,10 @@
+- week: 2025-W38
+  items:
+    - label: AI
+      title: "Speculative Decoding 실험"
+      url: "https://example.com"
+      note: "실사용 성능/비용 개선 포인트"
+    - label: Frontend
+      title: "React Compiler 전망"
+      url: "https://example.com"
+      note: "호환성 이슈 정리"

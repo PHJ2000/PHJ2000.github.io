@@ -1,0 +1,35 @@
+{% assign current = page %}
+{% assign count = 0 %}
+{% assign items = '' %}
+{% for p in site.posts %}
+  {% if p.url != current.url %}
+    {% assign matched = false %}
+    {% if current.categories %}
+      {% for c in current.categories %}
+        {% if p.categories contains c %}
+          {% assign matched = true %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    {% if matched == false and p.tags and current.tags %}
+      {% for t in current.tags %}
+        {% if p.tags contains t %}
+          {% assign matched = true %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    {% if matched %}
+      {% assign count = count | plus: 1 %}
+      {% capture items %}{{ items }}<li><a href="{{ p.url | relative_url }}">{{ p.title }}</a> <span class="meta">— {{ p.date | date: "%Y-%m-%d" }}</span></li>{% endcapture %}
+      {% if count == 3 %}{% break %}{% endif %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+{% if count > 0 %}
+<div class="card" style="margin-top:16px">
+  <h3 style="margin-top:0">관련 글</h3>
+  <ul>
+    {{ items | strip }}
+  </ul>
+</div>
+{% endif %}
